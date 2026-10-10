@@ -1,0 +1,51 @@
+export type WatchName = {
+  ticker: string;
+  company: string;
+  cik: string;
+};
+
+/** Zero-padded CIKs for the live EDGAR submissions API. */
+export const WATCHLIST: WatchName[] = [
+  { ticker: "AAPL", company: "Apple", cik: "0000320193" },
+  { ticker: "MSFT", company: "Microsoft", cik: "0000789019" },
+  { ticker: "NVDA", company: "NVIDIA", cik: "0001045810" },
+  { ticker: "AMZN", company: "Amazon", cik: "0001018724" },
+  { ticker: "GOOGL", company: "Alphabet", cik: "0001652044" },
+  { ticker: "META", company: "Meta Platforms", cik: "0001326801" },
+  { ticker: "TSLA", company: "Tesla", cik: "0001318605" },
+  { ticker: "AVGO", company: "Broadcom", cik: "0001730168" },
+  { ticker: "AMD", company: "Advanced Micro Devices", cik: "0000002488" },
+  { ticker: "INTC", company: "Intel", cik: "0000050863" },
+  { ticker: "NFLX", company: "Netflix", cik: "0001065280" },
+  { ticker: "ORCL", company: "Oracle", cik: "0001341439" },
+  { ticker: "CRM", company: "Salesforce", cik: "0001108524" },
+  { ticker: "ADBE", company: "Adobe", cik: "0000796343" },
+  { ticker: "QCOM", company: "Qualcomm", cik: "0000804328" },
+  { ticker: "IBM", company: "IBM", cik: "0000051143" },
+  { ticker: "JPM", company: "JPMorgan Chase", cik: "0000019617" },
+  { ticker: "BAC", company: "Bank of America", cik: "0000070858" },
+  { ticker: "GS", company: "Goldman Sachs", cik: "0000886982" },
+  { ticker: "V", company: "Visa", cik: "0001403161" },
+  { ticker: "MA", company: "Mastercard", cik: "0001141391" },
+  { ticker: "UNH", company: "UnitedHealth", cik: "0000731766" },
+  { ticker: "LLY", company: "Eli Lilly", cik: "0000059478" },
+  { ticker: "JNJ", company: "Johnson & Johnson", cik: "0000200406" },
+  { ticker: "PFE", company: "Pfizer", cik: "0000078003" },
+  { ticker: "XOM", company: "Exxon Mobil", cik: "0000034088" },
+  { ticker: "CVX", company: "Chevron", cik: "0000093410" },
+  { ticker: "CAT", company: "Caterpillar", cik: "0000018230" },
+  { ticker: "BA", company: "Boeing", cik: "0000012927" },
+  { ticker: "GE", company: "GE Aerospace", cik: "0000040545" },
+  { ticker: "HON", company: "Honeywell", cik: "0000773840" },
+  { ticker: "DIS", company: "Walt Disney", cik: "0001744489" },
+  { ticker: "WMT", company: "Walmart", cik: "0000104169" },
+  { ticker: "COST", company: "Costco", cik: "0000909832" },
+  { ticker: "HD", company: "Home Depot", cik: "0000354950" },
+  { ticker: "KO", company: "Coca-Cola", cik: "0000021344" },
+  { ticker: "PEP", company: "PepsiCo", cik: "0000077476" },
+  { ticker: "NKE", company: "Nike", cik: "0000320187" },
+  { ticker: "SBUX", company: "Starbucks", cik: "0000829224" },
+  { ticker: "MCD", company: "McDonald's", cik: "0000063908" },
+  { ticker: "PG", company: "Procter & Gamble", cik: "0000080424" },
+  { ticker: "TXN", company: "Texas Instruments", cik: "0000097476" },
+];
