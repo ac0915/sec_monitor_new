@@ -1,5 +1,5 @@
 {
-  "url": "http://127.0.0.1:8081",
+  "url": "http://127.0.0.1:8081/",
   "viewports": {
     "desktop": {
       "width": 1280,
@@ -7,9 +7,9 @@
       "status": 200,
       "title": "Sec Monitor",
       "hasCanvas": false,
-      "bodyTextLen": 4965,
-      "bodyTextHash": "fe6be5b9656380d0e6df94ed463ef9dab44398021cbf60be64069f965a7bee56",
-      "bodyTextPrefix": "EDGAR DESK Sec Monitor 42 names. Live 8-K, 10-Q, and 10-K filing",
+      "bodyTextLen": 8069,
+      "bodyTextHash": "777d650a64396c792648927dadcbdad5843bf185a11149e6b9054052614e6a14",
+      "bodyTextPrefix": "EDGAR DESK Sec Monitor 42 names on the tape. Five recent filings",
       "horizontalOverflow": false,
       "consoleErrors": [],
       "pageErrors": [],
@@ -21,9 +21,9 @@
       "status": 200,
       "title": "Sec Monitor",
       "hasCanvas": false,
-      "bodyTextLen": 4965,
-      "bodyTextHash": "fe6be5b9656380d0e6df94ed463ef9dab44398021cbf60be64069f965a7bee56",
-      "bodyTextPrefix": "EDGAR DESK Sec Monitor 42 names. Live 8-K, 10-Q, and 10-K filing",
+      "bodyTextLen": 8069,
+      "bodyTextHash": "777d650a64396c792648927dadcbdad5843bf185a11149e6b9054052614e6a14",
+      "bodyTextPrefix": "EDGAR DESK Sec Monitor 42 names on the tape. Five recent filings",
       "horizontalOverflow": false,
       "consoleErrors": [],
       "pageErrors": [],

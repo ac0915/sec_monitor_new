@@ -13,6 +13,8 @@ export type Filing = {
   headline: string;
   reason: string;
   url: string;
+  /** Two short sentences taken from the filing text, when this desk opened it. */
+  summary?: string;
 };
 
 const ITEM_COPY: Record<string, { sentiment: Sentiment; label: string }> = {

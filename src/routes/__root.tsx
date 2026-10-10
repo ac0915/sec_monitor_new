@@ -11,7 +11,7 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: APP_NAME },
-      { name: "description", content: "Live SEC filing desk for a 40-name watchlist." },
+      { name: "description", content: "SEC filing desk. Five recent filings, each in two short sentences." },
       { name: "theme-color", content: "#0c1110" },
     ],
     links: [
