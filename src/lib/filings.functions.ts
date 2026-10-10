@@ -1,6 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { classifyFiling, filingUrl, type Filing } from "./classify";
 import { WATCHLIST } from "./watchlist";
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 
 const USER_AGENT = "SecMonitorDesk/1.0 research@example.com";
 const FORMS = new Set(["8-K", "8-K/A", "10-K", "10-K/A", "10-Q", "10-Q/A"]);
@@ -95,9 +97,22 @@ type BriefInput = {
   headline: string;
 };
 
+function loadOpenRouterKey(): string | undefined {
+  if (!process.env.OPENROUTER_API_KEY) {
+    const path = resolve(process.cwd(), ".env");
+    if (existsSync(path)) process.loadEnvFile(path);
+  }
+  const key = process.env.OPENROUTER_API_KEY?.trim();
+  if (!key || key === "sk-or-v1-fake-key-replace-me") return undefined;
+  return key;
+}
+
 async function oneSentence(prompt: string): Promise<{ ok: true; text: string } | { ok: false; error: string }> {
-  const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey) return { ok: false, error: "Set OPENROUTER_API_KEY. Summaries use OpenRouter free models." };
+  const apiKey = loadOpenRouterKey();
+  if (!apiKey) {
+    return { ok: false, error: "Put your real OpenRouter key in the .env file as OPENROUTER_API_KEY." };
+  }
+
   const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -113,24 +128,12 @@ async function oneSentence(prompt: string): Promise<{ ok: true; text: string } |
       messages: [{ role: "user", content: prompt }],
     }),
   });
+
   if (!res.ok) return { ok: false, error: `OpenRouter error ${res.status}` };
-  const body = (await res.json()) as { choices?: { message?: { content?: string } }[] };
-  return { ok: true, text: body.choices?.[0]?.message?.content ?? "" };
-}
-  const apiKey = process.env.XAI_API_KEY;
-  if (!apiKey) return { ok: false, error: "Set GEMINI_API_KEY for free summaries. No AI key is configured." };
-  const res = await fetch("https://api.x.ai/v1/chat/completions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
-    body: JSON.stringify({
-      model: "grok-4.5",
-      max_tokens: 80,
-      temperature: 0.2,
-      messages: [{ role: "user", content: prompt }],
-    }),
-  });
-  if (!res.ok) return { ok: false, error: res.status === 403 ? "Grok credits are used up. Set a new GEMINI_API_KEY instead." : `AI error ${res.status}` };
-  const body = (await res.json()) as { choices?: { message?: { content?: string } }[] };
+
+  const body = (await res.json()) as {
+    choices?: { message?: { content?: string } }[];
+  };
   return { ok: true, text: body.choices?.[0]?.message?.content ?? "" };
 }
 
