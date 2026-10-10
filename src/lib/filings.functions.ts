@@ -96,23 +96,27 @@ type BriefInput = {
 };
 
 async function oneSentence(prompt: string): Promise<{ ok: true; text: string } | { ok: false; error: string }> {
-  const gemini = process.env.GEMINI_API_KEY;
-  if (gemini) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(gemini)}`;
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { maxOutputTokens: 80, temperature: 0.2 },
-      }),
-    });
-    if (!res.ok) return { ok: false, error: `Gemini error ${res.status}` };
-    const body = (await res.json()) as { candidates?: { content?: { parts?: { text?: string }[] } }[] };
-    const text = body.candidates?.[0]?.content?.parts?.map((part) => part.text ?? "").join(" ") ?? "";
-    return { ok: true, text };
-  }
-
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey) return { ok: false, error: "Set OPENROUTER_API_KEY. Summaries use OpenRouter free models." };
+  const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+      "HTTP-Referer": "https://sec-monitor.local",
+      "X-Title": "Sec Monitor",
+    },
+    body: JSON.stringify({
+      model: "openrouter/free",
+      max_tokens: 80,
+      temperature: 0.2,
+      messages: [{ role: "user", content: prompt }],
+    }),
+  });
+  if (!res.ok) return { ok: false, error: `OpenRouter error ${res.status}` };
+  const body = (await res.json()) as { choices?: { message?: { content?: string } }[] };
+  return { ok: true, text: body.choices?.[0]?.message?.content ?? "" };
+}
   const apiKey = process.env.XAI_API_KEY;
   if (!apiKey) return { ok: false, error: "Set GEMINI_API_KEY for free summaries. No AI key is configured." };
   const res = await fetch("https://api.x.ai/v1/chat/completions", {
