@@ -100,8 +100,6 @@ npm run dev
 
 ![SEC Filing Detail](./screenshots/filing-detail.png)
 
-> 請將你的截圖放到 `screenshots/` 資料夾，並確保檔案名稱與上面的 Markdown 路徑一致。
-
 ### 技術架構
 
 - React / TypeScript
@@ -211,8 +209,6 @@ npm run dev
 #### Filing Detail
 
 ![SEC Filing Detail](./screenshots/filing-detail.png)
-
-Place your screenshots inside the `screenshots/` folder and make sure their filenames match the paths above.
 
 ### Tech Stack
 
